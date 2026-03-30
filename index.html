@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fahad Mohammed | Backend Engineer Portfolio</title>
+<style>
+:root{
+  --bg:#070b14;
+  --panel:rgba(15,23,42,.72);
+  --panel2:rgba(15,23,42,.55);
+  --line:rgba(148,163,184,.14);
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --accent:#60a5fa;
+  --accent2:#a78bfa;
+  --accent3:#22c55e;
+  --shadow:0 25px 60px rgba(0,0,0,.35);
+  --radius:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(96,165,250,.18), transparent 28%),
+    radial-gradient(circle at 85% 18%, rgba(167,139,250,.14), transparent 28%),
+    radial-gradient(circle at 65% 82%, rgba(34,197,94,.08), transparent 25%),
+    linear-gradient(180deg, #050814 0%, #090d18 100%);
+  overflow-x:hidden;
+}
+::selection{background:rgba(96,165,250,.35)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{width:min(1180px, calc(100% - 40px)); margin:0 auto;}
+.grid{display:grid; gap:22px}
+.blur-orb{
+  position:fixed; inset:auto;
+  width:420px; height:420px; border-radius:50%;
+  filter:blur(60px); opacity:.16; pointer-events:none; z-index:-2;
+}
+.orb1{left:-120px; top:80px; background:#60a5fa;}
+.orb2{right:-120px; top:220px; background:#a78bfa;}
+.orb3{left:15%; bottom:-160px; background:#22c55e;}
+.cursor{
+  position:fixed; width:420px; height:420px; border-radius:50%;
+  pointer-events:none; z-index:-1;
+  background:radial-gradient(circle, rgba(96,165,250,.16), transparent 58%);
+  transform:translate(-50%,-50%);
+}
+nav{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:blur(18px);
+  background:linear-gradient(180deg, rgba(7,11,20,.88), rgba(7,11,20,.55));
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.navbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 0;
+}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
+.brand-badge{
+  width:38px;height:38px;border-radius:14px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg, rgba(96,165,250,.2), rgba(167,139,250,.2));
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.09);
+}
+.navlinks{display:flex;gap:18px;flex-wrap:wrap}
+.navlinks a{
+  color:var(--muted); font-size:.95rem; padding:9px 14px; border-radius:999px;
+  transition:.25s ease; border:1px solid transparent;
+}
+.navlinks a:hover,.navlinks a.active{
+  color:var(--text);
+  background:rgba(255,255,255,.04);
+  border-color:rgba(255,255,255,.08);
+}
+.hero{
+  padding:62px 0 28px;
+}
+.hero-card{
+  position:relative;
+  border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg, rgba(15,23,42,.78), rgba(15,23,42,.54));
+  box-shadow:var(--shadow);
+  border-radius:34px;
+  overflow:hidden;
+}
+.hero-card::before{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(115deg, rgba(96,165,250,.18), transparent 30%, transparent 70%, rgba(167,139,250,.14));
+  pointer-events:none;
+}
+.hero-inner{
+  position:relative;
+  padding:42px;
+  display:grid;
+  grid-template-columns:1.35fr .95fr;
+  gap:24px;
+  align-items:center;
+}
+.kicker{
+  display:inline-flex; gap:8px; align-items:center;
+  color:#c7d2fe;
+  font-size:.86rem;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+}
+.kdot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(96,165,250,.18)}
+h1{
+  margin:16px 0 14px;
+  font-size:clamp(2.5rem, 6vw, 5rem);
+  line-height:1.02;
+  letter-spacing:-.05em;
+}
+.gradient{
+  background:linear-gradient(90deg, #e2e8f0 0%, #60a5fa 45%, #a78bfa 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.lead{
+  max-width:62ch;
+  color:var(--muted);
+  font-size:1.04rem;
+  line-height:1.75;
+  margin-bottom:22px;
+}
+.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:13px 18px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  cursor:pointer;
+  transition:.25s ease;
+  font-weight:700;
+}
+.btn:hover{transform:translateY(-2px); background:rgba(255,255,255,.08)}
+.btn.primary{
+  background:linear-gradient(135deg, rgba(96,165,250,.95), rgba(167,139,250,.9));
+  color:#08111f; border-color:transparent;
+}
+.btn.primary:hover{filter:brightness(1.02)}
+.hero-side{
+  display:grid;
+  gap:14px;
+}
+.profile-photo{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:18px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:24px;
+}
+.profile-photo img{
+  width:100%;
+  max-width:240px;
+  height:auto;
+  border-radius:28px;
+  object-fit:cover;
+  display:block;
+}
+.stat-grid{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:14px;
+}
+.stat{
+  padding:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
+}
+.stat .num{font-size:1.7rem;font-weight:800;letter-spacing:-.03em}
+.stat .lbl{color:var(--muted);font-size:.88rem;margin-top:6px;line-height:1.45}
+.identity{
+  padding:22px;
+  background:linear-gradient(180deg, rgba(17,24,39,.85), rgba(17,24,39,.55));
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.08);
+}
+.identity h3{margin:0 0 8px;font-size:1.05rem}
+.identity p{margin:0;color:var(--muted);line-height:1.7;font-size:.95rem}
+.section{
+  padding:34px 0 8px;
+}
+.section-title{
+  display:flex; align-items:end; justify-content:space-between; gap:18px;
+  margin:0 0 18px;
+}
+.section-title h2{
+  margin:0;
+  font-size:1.65rem;
+  letter-spacing:-.03em;
+}
+.section-title p{margin:0;color:var(--muted);max-width:62ch}
+.panel{
+  background:linear-gradient(180deg, rgba(15,23,42,.72), rgba(15,23,42,.44));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.about{
+  padding:24px;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:22px;
+}
+.about .card{
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:24px;
+  padding:22px;
+}
+.about .card h3{margin:0 0 10px; font-size:1.05rem}
+.about .card p,.about .card li{color:var(--muted); line-height:1.75}
+.about ul{margin:0; padding-left:18px}
+.timeline{display:grid; gap:16px}
+.item{
+  padding:18px 18px 18px 20px;
+  border-left:2px solid rgba(96,165,250,.45);
+  background:rgba(255,255,255,.03);
+  border-radius:18px;
+}
+.item .top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.item h4{margin:0 0 5px; font-size:1rem}
+.item .meta{color:var(--muted);font-size:.92rem}
+.item ul{margin:12px 0 0; padding-left:18px}
+.item li{color:var(--muted); line-height:1.7; margin:6px 0}
+.stack{
+  padding:24px;
+}
+.stack-grid{
+  display:grid;
+  grid-template-columns:repeat(6, minmax(0,1fr));
+  gap:14px;
+}
+.tech{
+  padding:16px 12px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  text-align:center;
+  transition:.25s ease;
+  min-height:116px;
+}
+.tech:hover{transform:translateY(-4px); background:rgba(255,255,255,.065)}
+.tech img{width:28px;height:28px;margin:0 auto 10px; filter:drop-shadow(0 8px 20px rgba(0,0,0,.25))}
+.tech .name{font-weight:700;font-size:.92rem}
+.tech .sub{color:var(--muted);font-size:.8rem;margin-top:4px}
+.filterbar{
+  display:flex; flex-wrap:wrap; gap:10px; margin:0 0 18px;
+}
+.chip{
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+  color:var(--muted);
+  padding:10px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  transition:.25s ease;
+  font-weight:700;
+}
+.chip.active,.chip:hover{color:var(--text); background:rgba(255,255,255,.08)}
+.projects{
+  padding:24px;
+}
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:16px;
+}
+.project{
+  position:relative;
+  min-height:260px;
+  padding:20px;
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  background:
+    radial-gradient(circle at top left, rgba(96,165,250,.18), transparent 40%),
+    rgba(255,255,255,.04);
+  transition:.25s ease;
+}
+.project:hover{transform:translateY(-5px); border-color:rgba(96,165,250,.32)}
+.project .label{
+  display:inline-flex;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  color:#dbeafe;
+  font-size:.82rem;
+  border:1px solid rgba(255,255,255,.06);
+}
+.project h3{margin:16px 0 10px; font-size:1.24rem}
+.project p{margin:0; color:var(--muted); line-height:1.72}
+.project .foot{
+  position:absolute; left:20px; right:20px; bottom:18px;
+  display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+  color:#bfdbfe; font-size:.88rem;
+}
+.metrics{
+  padding:24px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+}
+.metric{
+  padding:18px;
+  border-radius:20px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+}
+.metric .mnum{font-size:2rem;font-weight:900;letter-spacing:-.05em}
+.metric .mlbl{color:var(--muted);font-size:.9rem;margin-top:6px;line-height:1.5}
+.footer{
+  padding:34px 0 54px;
+  color:var(--muted);
+}
+.footer .box{
+  padding:22px;
+  border-radius:24px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.small{font-size:.92rem; line-height:1.75}
+.reveal{opacity:0; transform:translateY(18px); transition:.7s ease}
+.reveal.show{opacity:1; transform:none}
+@media (max-width: 1024px){
+  .hero-inner,.about{grid-template-columns:1fr}
+  .project-grid,.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stack-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (max-width: 720px){
+  .wrap{width:min(1180px, calc(100% - 24px))}
+  .hero-inner{padding:22px}
+  .navlinks{display:none}
+  .project-grid,.metrics,.stack-grid,.stat-grid{grid-template-columns:1fr 1fr}
+  .about,.projects,.stack,.metrics{padding:16px}
+  .project{min-height:auto}
+}
+@media (max-width: 520px){
+  .project-grid,.metrics,.stack-grid,.stat-grid{grid-template-columns:1fr}
+  h1{font-size:2.35rem}
+}
+</style>
+</head>
+<body>
+<div class="blur-orb orb1"></div>
+<div class="blur-orb orb2"></div>
+<div class="blur-orb orb3"></div>
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <div class="wrap navbar">
+    <a href="#top" class="brand">
+      <span class="brand-badge">FM</span>
+      <span>Fahad Mohammed</span>
+    </a>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#stack">Stack</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top" class="wrap">
+  <section class="hero">
+    <div class="hero-card reveal">
+      <div class="hero-inner">
+        <div>
+          <div class="kicker"><span class="kdot"></span> Backend Engineer • Django • Kubernetes • DevOps</div>
+          <h1><span class="gradient">Senior backend Engineer</span> systems, built for scale.</h1>
+          <p class="lead">
+            Backend Engineer with 3+ years of experience building secure, scalable, cloud-native platforms across
+            automotive and healthcare. I design Django microservices, production APIs, Kubernetes deployments,
+            observability pipelines, and security-first backend workflows.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#projects">Explore Projects</a>
+            <a class="btn" href="mailto:ahemad01@gmail.com">Email Me</a>
+            <a class="btn" href="https://www.linkedin.com/in/fhdmohd" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="profile-photo">
+            <img src="portrait.svg" alt="Portrait of Fahad Mohammed" loading="lazy">
+          </div>
+          <div class="stat-grid">
+            <div class="stat">
+              <div class="num" data-count="40">0</div>
+              <div class="lbl">microservices migrated to Kubernetes (EKS)</div>
+            </div>
+            <div class="stat">
+              <div class="num" data-count="3">0</div>
+              <div class="lbl">years building backend systems</div>
+            </div>
+            <div class="stat">
+              <div class="num" data-count="2">0</div>
+              <div class="lbl">enterprise domains: automotive & healthcare</div>
+            </div>
+            <div class="stat">
+              <div class="num" data-count="6">0</div>
+              <div class="lbl">core stack areas: backend, cloud, security, monitoring</div>
+            </div>
+          </div>
+          <div class="identity">
+            <h3>What I bring</h3>
+            <p>
+              Architecture ownership, API development, secure data handling, deployment automation, and production
+              observability — with strong collaboration across development and delivery teams.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section reveal">
+    <div class="section-title">
+      <div>
+        <h2>About</h2>
+        <p></p>
+      </div>
+    </div>
+    <div class="panel about">
+      <div class="card">
+        <h3>Profile</h3>
+        <p>
+          I work on backend systems where reliability, security, and deployment quality matter. My experience spans
+          enterprise microservices, database design, authentication, cloud infrastructure, and CI/CD.
+        </p>
+        <ul>
+          <li>Django-based microservices and REST/GraphQL APIs</li>
+          <li>Kubernetes (EKS), Helm, Jenkins, Docker</li>
+          <li>Grafana, Prometheus, Loki observability</li>
+          <li>PII protection with Keycloak and encryption</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Engineering focus</h3>
+        <ul>
+          <li>Scalable backend architecture</li>
+          <li>Secure enterprise platforms</li>
+          <li>Cloud-native deployments</li>
+          <li>Production monitoring and logging</li>
+          <li>Team ownership and sprint delivery</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="section reveal">
+    <div class="section-title">
+      <div>
+        <h2>Experience</h2>
+        <p></p>
+      </div>
+    </div>
+    <div class="panel projects">
+      <div class="timeline">
+        <div class="item">
+          <div class="top">
+            <div>
+              <h4>Sr. Solution Analyst (Backend Engineer) — Sankey Business Solution</h4>
+              <div class="meta">May 2022 – Present · Mumbai, India</div>
+            </div>
+          </div>
+          <ul>
+            <li>Led Django microservices architecture for Connected Vehicles Platform and Dealer Portal.</li>
+            <li>Migrated 40+ microservices from Docker to Kubernetes (Amazon EKS) using Helm Charts and Helmfile.</li>
+            <li>Secured PII with Keycloak, AES/RSA encryption, and custom Django fields.</li>
+            <li>Improved database performance with schema design, async processing, and multi-threading.</li>
+            <li>Integrated Jenkins, Grafana, Prometheus, and Loki for CI/CD and observability.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="top">
+            <div>
+              <h4>BIM Engineer — XSCAD and ASM Engineering Services</h4>
+              <div class="meta">March 2020 – April 2021 · Mumbai, India</div>
+            </div>
+          </div>
+          <ul>
+            <li>Worked on BIM coordination for MEPF systems.</li>
+            <li>Created and maintained technical documentation for engineering projects.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack" class="section reveal">
+    <div class="section-title">
+      <div>
+        <h2>Tech Stack</h2>
+        <p>Using proper brand logos so your stack feels professional and visually recognizable.</p>
+      </div>
+    </div>
+    <div class="panel stack">
+      <div class="stack-grid">
+        <div class="tech"><img alt="Python" src="https://cdn.simpleicons.org/python/3776AB"><div class="name">Python</div><div class="sub">Backend</div></div>
+        <div class="tech"><img alt="Django" src="https://cdn.simpleicons.org/django/092E20"><div class="name">Django</div><div class="sub">Framework</div></div>
+        <div class="tech"><img alt="JavaScript" src="https://cdn.simpleicons.org/javascript/F7DF1E"><div class="name">JavaScript</div><div class="sub">Frontend Logic</div></div>
+        <div class="tech"><img alt="Docker" src="https://cdn.simpleicons.org/docker/2496ED"><div class="name">Docker</div><div class="sub">Containers</div></div>
+        <div class="tech"><img alt="Kubernetes" src="https://cdn.simpleicons.org/kubernetes/326CE5"><div class="name">Kubernetes</div><div class="sub">EKS</div></div>
+        <div class="tech"><img alt="AWS" src="https://cdn.simpleicons.org/amazonaws/FF9900"><div class="name">AWS</div><div class="sub">Cloud</div></div>
+        <div class="tech"><img alt="PostgreSQL" src="https://cdn.simpleicons.org/postgresql/4169E1"><div class="name">PostgreSQL</div><div class="sub">Database</div></div>
+        <div class="tech"><img alt="Jenkins" src="https://cdn.simpleicons.org/jenkins/D24939"><div class="name">Jenkins</div><div class="sub">CI/CD</div></div>
+        <div class="tech"><img alt="Grafana" src="https://cdn.simpleicons.org/grafana/F46800"><div class="name">Grafana</div><div class="sub">Dashboards</div></div>
+        <div class="tech"><img alt="Prometheus" src="https://cdn.simpleicons.org/prometheus/E6522C"><div class="name">Prometheus</div><div class="sub">Monitoring</div></div>
+        <div class="tech"><img alt="Loki" src="https://cdn.simpleicons.org/grafana/9C6ADE"><div class="name">Loki</div><div class="sub">Logs</div></div>
+        <div class="tech"><img alt="Keycloak" src="https://cdn.simpleicons.org/keycloak/4D4D4D"><div class="name">Keycloak</div><div class="sub">Security</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section reveal">
+    <div class="section-title">
+      <div>
+        <h2>Featured Projects</h2>
+        <p>Project cards are written like product case studies, which feels stronger than a plain task list.</p>
+      </div>
+    </div>
+
+    <div class="filterbar" id="filters">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="backend">Backend</button>
+      <button class="chip" data-filter="devops">DevOps</button>
+      <button class="chip" data-filter="security">Security</button>
+      <button class="chip" data-filter="healthcare">Healthcare</button>
+    </div>
+
+    <div class="project-grid">
+      <article class="project" data-tags="backend automotive">
+        <span class="label">Automotive • Backend</span>
+        <h3>Connected Vehicles Platform</h3>
+        <p>
+          Django microservices for an enterprise automotive platform supporting Connected Vehicles and Dealer Portal.
+          Built for secure service communication, scalable architecture, and production reliability.
+        </p>
+        <div class="foot"><span>Backend architecture</span><span>High scale</span></div>
+      </article>
+
+      <article class="project" data-tags="devops backend">
+        <span class="label">Platform • DevOps</span>
+        <h3>Employee Digital Platform</h3>
+        <p>
+          Migrated 40 microservices from Docker to Kubernetes (EKS) with Helm Charts and Helmfile, then added
+          monitoring with Grafana, Prometheus, and Loki.
+        </p>
+        <div class="foot"><span>EKS migration</span><span>Observability</span></div>
+      </article>
+
+      <article class="project" data-tags="healthcare security backend">
+        <span class="label">Healthcare • Security</span>
+        <h3>Discharge Management System</h3>
+        <p>
+          Improved discharge workflows with Hasura GraphQL, database views, live dashboards, Firebase notifications,
+          and SMTP email automation for healthcare operations.
+        </p>
+        <div class="foot"><span>GraphQL</span><span>Realtime</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-title">
+      <div>
+        <h2>Education & Certifications</h2>
+        <p>Kept clear and concise for ATS readability.</p>
+      </div>
+    </div>
+    <div class="panel metrics">
+      <div class="metric"><div class="mnum">BE</div><div class="mlbl">Mechanical Engineering<br>Mumbai University, 2016</div></div>
+      <div class="metric"><div class="mnum">Py</div><div class="mlbl">Professional Python Specialist<br>Squad Infotech</div></div>
+      <div class="metric"><div class="mnum">BIM</div><div class="mlbl">BIM MEPF Coordination<br>GREY EDGE</div></div>
+      <div class="metric"><div class="mnum">CAD</div><div class="mlbl">Autodesk Inventor<br>Autodesk</div></div>
+    </div>
+  </section>
+
+  <section id="contact" class="section reveal footer">
+    <div class="box">
+      <div>
+        <h2 style="margin:0 0 8px">Let’s build something scalable.</h2>
+        <div class="small">
+          Email: <a href="mailto:ahemad01@gmail.com">ahemad01@gmail.com</a> ·
+          Phone: <a href="tel:+917715910599">+91-771-591-0599</a> ·
+          LinkedIn: <a href="https://www.linkedin.com/in/fhdmohd" target="_blank" rel="noreferrer">linkedin.com/in/fhdmohd</a>
+        </div>
+      </div>
+      <a class="btn primary" href="mailto:ahemad01@gmail.com">Hire / Contact</a>
+    </div>
+  </section>
+</main>
+
+<script>
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('show');
+  });
+}, { threshold: 0.14 });
+revealEls.forEach(el => io.observe(el));
+
+const statNums = document.querySelectorAll('.num[data-count]');
+const countIO = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    statNums.forEach(el => {
+      const end = parseInt(el.dataset.count, 10);
+      let start = 0;
+      const duration = 1200;
+      const step = Math.max(10, Math.floor(duration / end));
+      const timer = setInterval(() => {
+        start += 1;
+        el.textContent = start;
+        if (start >= end) clearInterval(timer);
+      }, step);
+    });
+    countIO.disconnect();
+  });
+}, { threshold: 0.5 });
+countIO.observe(document.querySelector('.hero-card'));
+
+const chips = document.querySelectorAll('.chip');
+const projects = document.querySelectorAll('.project');
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    const filter = chip.dataset.filter;
+    projects.forEach(p => {
+      const tags = p.dataset.tags.split(' ');
+      const show = filter === 'all' || tags.includes(filter);
+      p.style.display = show ? 'block' : 'none';
+    });
+  });
+});
+
+const navLinks = document.querySelectorAll('.navlinks a');
+const sections = ['about','experience','stack','projects','contact'].map(id => document.getElementById(id));
+const navSpy = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    navLinks.forEach(a => a.classList.remove('active'));
+    const id = entry.target.id;
+    const active = document.querySelector('.navlinks a[href="#' + id + '"]');
+    if (active) active.classList.add('active');
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => navSpy.observe(s));
+</script>
+</body>
+</html>
