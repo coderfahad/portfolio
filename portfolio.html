@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fahad Mohammed | Backend Engineer Portfolio</title>
+<style>
+:root{
+  --bg:#070b14;--text:#e5e7eb;--muted:#94a3b8;--accent:#60a5fa;--accent2:#a78bfa;
+  --shadow:0 25px 60px rgba(0,0,0,.35);--radius:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 10%,rgba(96,165,250,.18),transparent 28%),
+    radial-gradient(circle at 85% 18%,rgba(167,139,250,.14),transparent 28%),
+    radial-gradient(circle at 65% 82%,rgba(34,197,94,.08),transparent 25%),
+    linear-gradient(180deg,#050814 0%,#090d18 100%);
+  overflow-x:hidden;
+}
+::selection{background:rgba(96,165,250,.35)}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1180px,calc(100% - 40px));margin:0 auto}
+.blur-orb{position:fixed;width:420px;height:420px;border-radius:50%;filter:blur(60px);opacity:.16;pointer-events:none;z-index:-2}
+.orb1{left:-120px;top:80px;background:#60a5fa}
+.orb2{right:-120px;top:220px;background:#a78bfa}
+.orb3{left:15%;bottom:-160px;background:#22c55e}
+.cursor{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,rgba(96,165,250,.16),transparent 58%);transform:translate(-50%,-50%)}
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:linear-gradient(180deg,rgba(7,11,20,.88),rgba(7,11,20,.55));border-bottom:1px solid rgba(255,255,255,.06)}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800}
+.brand-badge{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(96,165,250,.2),rgba(167,139,250,.2));border:1px solid rgba(255,255,255,.08)}
+.navlinks{display:flex;gap:18px;flex-wrap:wrap}
+.navlinks a{color:var(--muted);font-size:.95rem;padding:9px 14px;border-radius:999px;transition:.25s;border:1px solid transparent}
+.navlinks a:hover,.navlinks a.active{color:var(--text);background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+.hero{padding:62px 0 28px}
+.hero-card{position:relative;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(15,23,42,.78),rgba(15,23,42,.54));box-shadow:var(--shadow);border-radius:34px;overflow:hidden}
+.hero-card::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(96,165,250,.18),transparent 30%,transparent 70%,rgba(167,139,250,.14));pointer-events:none}
+.hero-inner{position:relative;padding:42px;display:grid;grid-template-columns:1.35fr .95fr;gap:24px;align-items:center}
+.kicker{display:inline-flex;gap:8px;align-items:center;color:#c7d2fe;font-size:.86rem;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.kdot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(96,165,250,.18)}
+h1{margin:16px 0 14px;font-size:clamp(2.5rem,6vw,5rem);line-height:1.02;letter-spacing:-.05em}
+.gradient{background:linear-gradient(90deg,#e2e8f0 0%,#60a5fa 45%,#a78bfa 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:62ch;color:var(--muted);font-size:1.04rem;line-height:1.75;margin-bottom:22px}
+.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 18px;border-radius:16px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:var(--text);cursor:pointer;transition:.25s;font-weight:700}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.08)}
+.btn.primary{background:linear-gradient(135deg,rgba(96,165,250,.95),rgba(167,139,250,.9));color:#08111f;border-color:transparent}
+.btn.primary:hover{filter:brightness(1.02)}
+.hero-side{display:grid;gap:14px}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.stat{padding:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:22px}
+.stat .num{font-size:1.7rem;font-weight:800;letter-spacing:-.03em}
+.stat .lbl{color:var(--muted);font-size:.88rem;margin-top:6px;line-height:1.45}
+.identity{padding:22px;background:linear-gradient(180deg,rgba(17,24,39,.85),rgba(17,24,39,.55));border-radius:22px;border:1px solid rgba(255,255,255,.08)}
+.identity h3{margin:0 0 8px;font-size:1.05rem}
+.identity p{margin:0;color:var(--muted);line-height:1.7;font-size:.95rem}
+.section{padding:34px 0 8px}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:0 0 18px}
+.section-title h2{margin:0;font-size:1.65rem;letter-spacing:-.03em}
+.section-title p{margin:0;color:var(--muted);max-width:62ch}
+.panel{background:linear-gradient(180deg,rgba(15,23,42,.72),rgba(15,23,42,.44));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow)}
+.about{padding:24px;display:grid;grid-template-columns:1.15fr .85fr;gap:22px}
+.about .card{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);border-radius:24px;padding:22px}
+.about .card h3{margin:0 0 10px;font-size:1.05rem}
+.about .card p,.about .card li{color:var(--muted);line-height:1.75}
+.about ul{margin:0;padding-left:18px}
+.timeline{display:grid;gap:16px}
+.item{padding:18px 18px 18px 20px;border-left:2px solid rgba(96,165,250,.45);background:rgba(255,255,255,.03);border-radius:18px}
+.item h4{margin:0 0 5px;font-size:1rem}
+.item .meta{color:var(--muted);font-size:.92rem}
+.item ul{margin:12px 0 0;padding-left:18px}
+.item li{color:var(--muted);line-height:1.7;margin:6px 0}
+.stack{padding:24px}
+.stack-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
+.tech{padding:14px 8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;text-align:center;transition:.25s;min-height:106px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.tech:hover{transform:translateY(-4px);background:rgba(255,255,255,.07)}
+.tech svg{width:32px;height:32px;margin:0 auto 8px;display:block;flex-shrink:0}
+.tech .name{font-weight:700;font-size:.86rem;line-height:1.2}
+.tech .sub{color:var(--muted);font-size:.74rem;margin-top:3px}
+.filterbar{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+.chip{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:var(--muted);padding:10px 14px;border-radius:999px;cursor:pointer;transition:.25s;font-weight:700}
+.chip.active,.chip:hover{color:var(--text);background:rgba(255,255,255,.08)}
+.projects{padding:24px}
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.project{position:relative;min-height:260px;padding:20px;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:radial-gradient(circle at top left,rgba(96,165,250,.18),transparent 40%),rgba(255,255,255,.04);transition:.25s}
+.project:hover{transform:translateY(-5px);border-color:rgba(96,165,250,.32)}
+.project .label{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.07);color:#dbeafe;font-size:.82rem;border:1px solid rgba(255,255,255,.06)}
+.project h3{margin:16px 0 10px;font-size:1.24rem}
+.project p{margin:0;color:var(--muted);line-height:1.72}
+.project .foot{position:absolute;left:20px;right:20px;bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;color:#bfdbfe;font-size:.88rem}
+.metrics{padding:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.metric{padding:18px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.metric .mnum{font-size:2rem;font-weight:900;letter-spacing:-.05em}
+.metric .mlbl{color:var(--muted);font-size:.9rem;margin-top:6px;line-height:1.5}
+.footer{padding:34px 0 54px;color:var(--muted)}
+.footer .box{padding:22px;border-radius:24px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+.small{font-size:.92rem;line-height:1.75}
+.reveal{opacity:0;transform:translateY(18px);transition:.7s ease}
+.reveal.show{opacity:1;transform:none}
+@media(max-width:1100px){.stack-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:1024px){.hero-inner,.about{grid-template-columns:1fr}.project-grid,.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){.wrap{width:calc(100% - 24px)}.hero-inner{padding:22px}.navlinks{display:none}.project-grid,.metrics,.stack-grid,.stat-grid{grid-template-columns:1fr 1fr}.about,.projects,.stack,.metrics{padding:16px}.project{min-height:auto}}
+@media(max-width:520px){.project-grid,.metrics,.stack-grid,.stat-grid{grid-template-columns:1fr}h1{font-size:2.35rem}}
+</style>
+</head>
+<body>
+<div class="blur-orb orb1"></div>
+<div class="blur-orb orb2"></div>
+<div class="blur-orb orb3"></div>
+<div class="cursor" id="cursor"></div>
+
+<nav><div class="wrap navbar">
+  <a href="#top" class="brand"><span class="brand-badge">FM</span><span>Fahad Mohammed</span></a>
+  <div class="navlinks">
+    <a href="#about">About</a><a href="#experience">Experience</a>
+    <a href="#stack">Stack</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+  </div>
+</div></nav>
+
+<main id="top" class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-card reveal">
+      <div class="hero-inner">
+        <div>
+          <div class="kicker"><span class="kdot"></span> Backend Engineer • Django • Kubernetes • DevOps</div>
+          <h1><span class="gradient">Senior Backend Engineer</span> systems, built for scale.</h1>
+          <p class="lead">Backend Engineer with 3+ years of experience building secure, scalable, cloud-native platforms across automotive and healthcare. I design Django & FastAPI microservices, production APIs, full Kubernetes infrastructure, ETL pipelines, observability stacks, and security-first backend workflows.</p>
+          <div class="actions">
+            <a class="btn primary" href="#projects">Explore Projects</a>
+            <a class="btn" href="mailto:ahemad01@gmail.com">Email Me</a>
+            <a class="btn" href="https://www.linkedin.com/in/fhdmohd" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="stat-grid">
+            <div class="stat"><div class="num" data-count="40">0</div><div class="lbl">microservices deployed on Kubernetes (EKS)</div></div>
+            <div class="stat"><div class="num" data-count="3">0</div><div class="lbl">years building backend systems</div></div>
+            <div class="stat"><div class="num" data-count="2">0</div><div class="lbl">enterprise domains: automotive & healthcare</div></div>
+            <div class="stat"><div class="num" data-count="6">0</div><div class="lbl">core stack areas: backend, cloud, security, monitoring</div></div>
+          </div>
+          <div class="identity">
+            <h3>What I bring</h3>
+            <p>Architecture ownership, API development, secure data handling, deployment automation, ETL pipelines, and production observability — with strong collaboration across development and delivery teams.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section reveal">
+    <div class="section-title"><div><h2>About</h2></div></div>
+    <div class="panel about">
+      <div class="card">
+        <h3>Profile</h3>
+        <p>I work on backend systems where reliability, security, and deployment quality matter. My experience spans enterprise microservices, database design, authentication, cloud infrastructure, ETL pipelines, and CI/CD.</p>
+        <ul>
+          <li>Django & FastAPI microservices, REST/GraphQL APIs</li>
+          <li>Full Kubernetes (EKS) setup — cluster config, Helm, Helmfile, networking, deployments</li>
+          <li>ETL pipelines for data ingestion and transformation</li>
+          <li>Grafana, Prometheus, Loki observability</li>
+          <li>PII protection with Keycloak, AES/RSA encryption, Checkmarx SAST</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Engineering focus</h3>
+        <ul>
+          <li>Scalable backend architecture</li>
+          <li>Secure enterprise platforms</li>
+          <li>Cloud-native deployments</li>
+          <li>Production monitoring and logging</li>
+          <li>Team ownership and sprint delivery</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section reveal">
+    <div class="section-title"><div><h2>Experience</h2></div></div>
+    <div class="panel projects">
+      <div class="timeline">
+        <div class="item">
+          <h4>Sr. Solution Analyst (Backend Engineer) — Sankey Business Solution</h4>
+          <div class="meta">May 2022 – Present · Mumbai, India</div>
+          <ul>
+            <li>Led Django & FastAPI microservices architecture for Connected Vehicles Platform and Dealer Portal.</li>
+            <li>Owned full Kubernetes setup for 40+ microservices — cluster configuration, networking, Helm Charts, Helmfile, and workload deployments on Amazon EKS (EKS provisioning handled by AWS infra team).</li>
+            <li>Built and maintained ETL pipelines for data ingestion, transformation, and reporting workflows.</li>
+            <li>Secured PII with Keycloak, AES/RSA encryption, and custom Django fields; performed SAST with Checkmarx.</li>
+            <li>Improved database performance with schema design, async processing, and multi-threading.</li>
+            <li>Integrated Jenkins, Grafana, Prometheus, and Loki for CI/CD and observability.</li>
+          </ul>
+        </div>
+        <div class="item">
+          <h4>BIM Engineer — XSCAD and ASM Engineering Services</h4>
+          <div class="meta">March 2020 – April 2021 · Mumbai, India</div>
+          <ul>
+            <li>Worked on BIM coordination for MEPF systems.</li>
+            <li>Created and maintained technical documentation for engineering projects.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK — all inline SVGs, zero external dependencies -->
+  <section id="stack" class="section reveal">
+    <div class="section-title"><div><h2>Tech Stack</h2><p>Backend, infrastructure, security, and observability tools.</p></div></div>
+    <div class="panel stack">
+      <div class="stack-grid">
+
+        <!-- Python -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><defs><linearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#5A9FD4"/><stop offset="1" stop-color="#306998"/></linearGradient><linearGradient id="b" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#FFD43B"/><stop offset="1" stop-color="#FFE873"/></linearGradient></defs><path fill="url(#a)" d="M63.4 2C34 2 36 15 36 15l.1 13.4h27.8v4H23.2S6 30.2 6 60s14.9 29 14.9 29H30v-14s-.8-14.9 14.7-14.9h25.4S85 60.4 85 46.1V18.3C85 4.4 73.8 2 63.4 2zm-14 8.1a4.9 4.9 0 110 9.8 4.9 4.9 0 010-9.8z"/><path fill="url(#b)" d="M64.6 126c29.4 0 27.4-13 27.4-13l-.1-13.4H64.1v-4h40.7s17.2 1.8 17.2-28-14.9-29-14.9-29H98v14s.8 14.9-14.7 14.9H57.9S43 67.6 43 81.9v27.8c0 13.9 11.2 16.3 21.6 16.3zm14-8.1a4.9 4.9 0 110-9.8 4.9 4.9 0 010 9.8z"/></svg>
+          <div class="name">Python</div><div class="sub">Backend</div>
+        </div>
+
+        <!-- Django -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><rect width="128" height="128" rx="16" fill="#092E20"/><path fill="#44B78B" d="M56 24h16v59c-8 1.5-14 2-20 2-19 0-29-8.6-29-25.2C23 44 33.4 34 49.6 34c2.5 0 4.5.2 6.4.7V24zm0 42.2c-1.7-.5-3.2-.7-5-.7-7.7 0-12.2 4.8-12.2 13.2 0 8.2 4.3 12.7 12.2 12.7 1.6 0 3-.1 5-.3V66.2zM82 34h16v49H82V34z"/><circle fill="#44B78B" cx="90" cy="22" r="8"/></svg>
+          <div class="name">Django</div><div class="sub">Framework</div>
+        </div>
+
+        <!-- FastAPI -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><circle cx="64" cy="64" r="62" fill="#059669"/><polygon fill="#fff" points="72,20 38,68 62,68 56,108 96,60 70,60"/></svg>
+          <div class="name">FastAPI</div><div class="sub">Framework</div>
+        </div>
+
+        <!-- GraphQL -->
+        <div class="tech">
+          <svg viewBox="0 0 400 400"><g fill="#E10098"><line x1="57" y1="302" x2="243" y2="0" stroke="#E10098" stroke-width="17"/><line x1="343" y1="302" x2="157" y2="0" stroke="#E10098" stroke-width="17"/><line x1="27" y1="250" x2="373" y2="250" stroke="#E10098" stroke-width="17"/><line x1="57" y1="302" x2="343" y2="302" stroke="#E10098" stroke-width="17"/><line x1="57" y1="302" x2="200" y2="78" stroke="#E10098" stroke-width="17"/><line x1="343" y1="302" x2="200" y2="78" stroke="#E10098" stroke-width="17"/><circle cx="200" cy="372" r="28"/><circle cx="200" cy="28" r="28"/><circle cx="28" cy="228" r="28"/><circle cx="372" cy="228" r="28"/><circle cx="57" cy="302" r="28"/><circle cx="343" cy="302" r="28"/></g></svg>
+          <div class="name">GraphQL</div><div class="sub">API</div>
+        </div>
+
+        <!-- SQL / PostgreSQL -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><ellipse cx="64" cy="30" rx="48" ry="18" fill="#336791"/><path fill="#336791" d="M16 30v20c0 10 22 18 48 18s48-8 48-18V30c0 10-22 18-48 18S16 40 16 30z"/><path fill="#4169E1" d="M16 50v20c0 10 22 18 48 18s48-8 48-18V50c0 10-22 18-48 18S16 60 16 50z"/><path fill="#336791" d="M16 70v20c0 10 22 18 48 18s48-8 48-18V70c0 10-22 18-48 18S16 80 16 70z"/></svg>
+          <div class="name">SQL</div><div class="sub">PostgreSQL</div>
+        </div>
+
+        <!-- Docker -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><path fill="#2496ED" d="M116 52a18 18 0 00-10-2 18 18 0 00-7-12l-2-1-1 2a17 17 0 00-2 9 14 14 0 01-6-2H14C8 46 5 55 5 64c0 24 19 42 43 42 20 0 38-10 47-28h3c8 0 14-3 18-9l2-4-2-1c-4-2-8-2-12 0z"/><rect fill="#fff" x="22" y="52" width="10" height="10" rx="1"/><rect fill="#fff" x="36" y="52" width="10" height="10" rx="1"/><rect fill="#fff" x="50" y="52" width="10" height="10" rx="1"/><rect fill="#fff" x="64" y="52" width="10" height="10" rx="1"/><rect fill="#fff" x="50" y="38" width="10" height="10" rx="1"/><rect fill="#fff" x="64" y="38" width="10" height="10" rx="1"/></svg>
+          <div class="name">Docker</div><div class="sub">Containers</div>
+        </div>
+
+        <!-- Kubernetes -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><circle cx="64" cy="64" r="62" fill="#326CE5"/><path fill="#fff" d="M64 18a8 8 0 00-7.9 6.9L53 40a4 4 0 001.1 3.1 4 4 0 002.9 1.2h.6l2.8-.6a2 2 0 012 .9l.5.9a2 2 0 01-.1 2.1l-1.7 2.3a4 4 0 00.1 5l5.8 6.4 5.8-6.4a4 4 0 00.1-5l-1.7-2.3a2 2 0 01-.1-2.1l.5-.9a2 2 0 012-.9l2.8.6h.6a4 4 0 002.9-1.2 4 4 0 001.1-3.1l-3.1-15.1A8 8 0 0064 18zM28 60.4a8 8 0 00-4.5 13.5l11.4 9.7a4 4 0 003.2.9 4 4 0 002.7-1.8l.3-.5 1.4-2.6a2 2 0 012.2-.9l1 .3a2 2 0 011.3 1.9l-.4 3a4 4 0 004.5 4.5l8.3-.9-1.6-8.2a4 4 0 00-2.8-3l-2.9-.8a2 2 0 01-1.3-1.4l-.1-1a2 2 0 011-1.9l2.8-1.5.2-.7.6-8.7-14.6-6.6A8 8 0 0028 60.4zm72 0a8 8 0 00-7.3 4.8L78.1 71.8l.6 8.7.2.7 2.8 1.5a2 2 0 011 1.9l-.1 1a2 2 0 01-1.3 1.4l-2.9.8a4 4 0 00-2.8 3l-1.6 8.2 8.3.9a4 4 0 004.5-4.5l-.4-3a2 2 0 011.3-1.9l1-.3a2 2 0 012.2.9l1.4 2.6.3.5a4 4 0 002.7 1.8 4 4 0 003.2-.9l11.4-9.7A8 8 0 00100 60.4z"/></svg>
+          <div class="name">Kubernetes</div><div class="sub">EKS</div>
+        </div>
+
+        <!-- AWS -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><path fill="#FF9900" d="M39 68c0 1.2.2 2.1.5 2.8.3.7.8 1.4 1.4 2.1.2.3.3.6.3.8 0 .3-.2.7-.6 1L38.8 76c-.3.2-.5.3-.8.3-.3 0-.6-.1-.9-.4-.4-.4-.8-.9-1.1-1.4-.3-.5-.6-1.1-.9-1.8-2.2 2.6-5 4-8.3 4-2.4 0-4.3-.7-5.6-2-1.4-1.3-2.1-3-2.1-5.2 0-2.3.8-4.1 2.4-5.5 1.6-1.4 3.8-2.1 6.6-2.1.9 0 1.8.1 2.8.2 1 .1 2 .3 3 .6v-2c0-2.1-.4-3.5-1.3-4.3-.9-.8-2.4-1.2-4.4-1.2-1 0-1.9.1-2.9.4-1 .2-1.9.5-2.8.9-.4.2-.7.3-.9.3-.3 0-.5-.2-.5-.7v-1.6c0-.4.1-.6.2-.8.1-.2.4-.4.8-.5 1.1-.5 2.4-1 3.8-1.3 1.5-.3 3-.5 4.8-.5 3.7 0 6.3.8 8 2.5 1.6 1.7 2.5 4.2 2.5 7.5V68zm-11.4 4.3c.9 0 1.8-.2 2.7-.5 1-.3 1.8-.9 2.5-1.7.4-.5.7-1 .9-1.7.2-.7.3-1.4.3-2.3V65c-.7-.2-1.5-.3-2.3-.4-.8-.1-1.5-.1-2.3-.1-1.7 0-2.9.3-3.7 1-.8.7-1.2 1.7-1.2 3 0 1.2.3 2.1 1 2.8.6.5 1.3.8 2.1.8zm19.4 2.6c-.4 0-.7-.1-.9-.3-.2-.2-.4-.5-.5-1L41.2 55c-.1-.4-.2-.6-.2-.8 0-.3.2-.5.5-.5h3c.5 0 .8.1.9.3.2.2.3.5.5 1l4.3 16.8 4-16.8c.1-.5.3-.8.5-1 .2-.2.5-.3 1-.3h2.4c.5 0 .8.1 1 .3.2.2.3.5.4 1l4 16.9 4.4-16.9c.1-.5.3-.8.5-1 .2-.2.5-.3.9-.3h2.8c.3 0 .5.2.5.5 0 .1 0 .3-.1.4L65 74.8c-.1.5-.3.8-.5 1-.2.2-.5.3-.9.3h-2.6c-.4 0-.7-.1-1-.3-.2-.2-.4-.5-.4-1L56.1 60l-3.8 14.8c-.1.5-.3.8-.5 1-.2.2-.5.3-1 .3h-2.5zm32.8.7c-2 0-3.9-.3-5.7-1-1.8-.7-3.3-1.5-4.3-2.3-.5-.5-.6-1-.2-1.6l1.2-1.7c.1-.2.3-.4.6-.4.2 0 .5.1.8.4 1 .7 2.1 1.4 3.4 1.9 1.3.4 2.6.7 4 .7 1.8 0 3.3-.4 4.3-1.2 1-.8 1.5-1.8 1.5-3.1 0-.9-.3-1.6-.8-2.2-.5-.5-1.6-1-3.1-1.4l-4.5-1.4c-2.3-.7-4-1.9-5.1-3.3-1.1-1.4-1.7-3.1-1.7-4.9 0-1.5.4-2.8 1.1-3.9.7-1.1 1.7-2 3-2.6 1.3-.6 2.7-1 4.4-1 .9 0 1.7.1 2.6.2.9.2 1.7.4 2.4.7.7.3 1.4.6 2 1 .6.4 1 .8 1.3 1.1.3.3.4.6.4.9 0 .3-.1.6-.3.8l-1.1 1.7c-.2.3-.5.5-.7.5-.3 0-.6-.1-.9-.4-1.5-1.3-3.4-2-5.6-2-1.6 0-2.9.3-3.9 1-1 .7-1.5 1.7-1.5 3.1 0 .9.3 1.6.9 2.2.6.6 1.6 1.1 3.2 1.5l4.4 1.4c2.3.7 4 1.8 5 3.1 1 1.3 1.6 3 1.6 5 0 1.5-.3 2.9-1 4-.7 1.1-1.8 2-3.2 2.7-1.6.8-3.3 1.2-5.3 1.2z"/><path fill="#FF9900" d="M97 86c-12.4 9.2-30.5 14-46 14-21.8 0-41.4-8-56.2-21.4-1.2-1 0-2.5 1.3-1.6 16.1 9.3 35.9 14.9 56.4 14.9 13.8 0 29-2.9 43-8.8 2-.8 3.8 1.4 1.5 2.9zm4.9-5.5c-1.5-2-10.2-.9-14.1-.4-1.2.1-1.4-1-.3-1.9 7-4.9 18.4-3.4 19.7-1.8 1.3 1.6-.3 13.1-6.9 18.6-1 .9-2 .4-1.5-.6 1.5-3.7 4.8-11.8 3.1-13.9z"/></svg>
+          <div class="name">AWS</div><div class="sub">Cloud</div>
+        </div>
+
+        <!-- Jenkins -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><circle cx="64" cy="64" r="62" fill="#D24939"/><path fill="#fff" d="M90 48c0-14.4-11.7-26-26-26S38 33.6 38 48c0 6.7 2.5 12.8 6.7 17.3L42 90h44l-2.7-24.7C87.5 60.8 90 54.7 90 48zm-26 50H58l1-9h10l1 9zm-4-15c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm0-36c-9.9 0-18 8.1-18 18h4c0-7.7 6.3-14 14-14s14 6.3 14 14h4c0-9.9-8.1-18-18-18z"/></svg>
+          <div class="name">Jenkins</div><div class="sub">CI/CD</div>
+        </div>
+
+        <!-- Grafana -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><circle cx="64" cy="64" r="62" fill="#1a1a2e"/><circle cx="64" cy="64" r="54" fill="none" stroke="#F46800" stroke-width="6"/><path fill="#F46800" d="M64 28v8M64 92v8M28 64h8M92 64h8M40.7 40.7l5.6 5.7M81.7 81.7l5.7 5.6M87.3 40.7l-5.6 5.7M46.3 81.7l-5.7 5.6"/><circle cx="64" cy="64" r="10" fill="#F46800"/><path fill="#F46800" d="M56 62h-16v4h16zm32 0H72v4h16zm-18-16V30h-4v16zm0 32v16h-4V78z"/></svg>
+          <div class="name">Grafana</div><div class="sub">Dashboards</div>
+        </div>
+
+        <!-- Prometheus -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><circle cx="64" cy="64" r="62" fill="#E6522C"/><circle cx="64" cy="64" r="44" fill="none" stroke="#fff" stroke-width="5"/><circle cx="64" cy="64" r="8" fill="#fff"/><path stroke="#fff" stroke-width="5" d="M64 20v24M64 84v24M20 64h24M84 64h24M34.7 34.7l17 17M76.3 76.3l17 17M93.3 34.7l-17 17M51.7 76.3l-17 17"/></svg>
+          <div class="name">Prometheus</div><div class="sub">Monitoring</div>
+        </div>
+
+        <!-- Loki -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><circle cx="64" cy="64" r="62" fill="#1a1a2e"/><rect x="44" y="36" width="8" height="56" rx="4" fill="#9C6ADE"/><rect x="60" y="48" width="8" height="44" rx="4" fill="#9C6ADE" opacity=".85"/><rect x="76" y="40" width="8" height="52" rx="4" fill="#9C6ADE" opacity=".7"/><rect x="34" y="92" width="60" height="6" rx="3" fill="#9C6ADE" opacity=".4"/></svg>
+          <div class="name">Loki</div><div class="sub">Logs</div>
+        </div>
+
+        <!-- Keycloak -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><rect width="128" height="128" rx="16" fill="#4D9DE0"/><path fill="#fff" d="M64 20a44 44 0 100 88A44 44 0 0064 20zm0 10a34 34 0 110 68 34 34 0 010-68zm0 14a10 10 0 100 20 10 10 0 000-20zm-6 26v18h12V70H58zm-16-4l-4 6 12 8 4-6zm44 0l-12 8 4 6 12-8z"/></svg>
+          <div class="name">Keycloak</div><div class="sub">Auth / IAM</div>
+        </div>
+
+        <!-- Checkmarx -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><rect width="128" height="128" rx="16" fill="#E3282D"/><path fill="#fff" d="M64 20C39.7 20 20 39.7 20 64s19.7 44 44 44 44-19.7 44-44S88.3 20 64 20zm-12 61L30 59l8-8 14 14 38-38 8 8z"/></svg>
+          <div class="name">Checkmarx</div><div class="sub">SAST</div>
+        </div>
+
+        <!-- ETL -->
+        <div class="tech">
+          <svg viewBox="0 0 128 128"><rect width="128" height="128" rx="16" fill="#0F766E"/><rect x="18" y="28" width="38" height="18" rx="6" fill="#5EEAD4"/><rect x="18" y="56" width="92" height="18" rx="6" fill="#5EEAD4" opacity=".8"/><rect x="18" y="84" width="38" height="18" rx="6" fill="#5EEAD4" opacity=".6"/><rect x="72" y="28" width="38" height="18" rx="6" fill="#5EEAD4" opacity=".5"/><rect x="72" y="84" width="38" height="18" rx="6" fill="#5EEAD4" opacity=".5"/><path fill="#fff" d="M57 22l14 15-14 15V22zm0 54l14 15-14 15V76z"/></svg>
+          <div class="name">ETL</div><div class="sub">Pipelines</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section reveal">
+    <div class="section-title"><div><h2>Featured Projects</h2><p>Outcome-focused case studies from production systems.</p></div></div>
+    <div class="filterbar" id="filters">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="backend">Backend</button>
+      <button class="chip" data-filter="devops">DevOps</button>
+      <button class="chip" data-filter="security">Security</button>
+      <button class="chip" data-filter="healthcare">Healthcare</button>
+    </div>
+    <div class="project-grid">
+      <article class="project" data-tags="backend automotive">
+        <span class="label">Automotive • Backend</span>
+        <h3>Connected Vehicles Platform</h3>
+        <p>Django & FastAPI microservices for an enterprise automotive platform supporting Connected Vehicles and Dealer Portal. Built for secure service communication, scalable architecture, and production reliability.</p>
+        <div class="foot"><span>Backend architecture</span><span>High scale</span></div>
+      </article>
+      <article class="project" data-tags="devops backend">
+        <span class="label">Platform • DevOps</span>
+        <h3>Employee Digital Platform</h3>
+        <p>Owned full Kubernetes setup for 40+ microservices on EKS — cluster config, networking, Helm Charts, Helmfile — then built observability with Grafana, Prometheus, and Loki.</p>
+        <div class="foot"><span>K8s full setup</span><span>Observability</span></div>
+      </article>
+      <article class="project" data-tags="healthcare security backend">
+        <span class="label">Healthcare • Security</span>
+        <h3>Discharge Management System</h3>
+        <p>Improved discharge workflows with Hasura GraphQL, database views, live dashboards, Firebase notifications, and SMTP email automation for healthcare operations.</p>
+        <div class="foot"><span>GraphQL</span><span>Realtime</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section reveal">
+    <div class="section-title"><div><h2>Education & Certifications</h2></div></div>
+    <div class="panel metrics">
+      <div class="metric"><div class="mnum">BE</div><div class="mlbl">Mechanical Engineering<br>Mumbai University, 2016</div></div>
+      <div class="metric"><div class="mnum">Py</div><div class="mlbl">Professional Python Specialist<br>Squad Infotech</div></div>
+      <div class="metric"><div class="mnum">BIM</div><div class="mlbl">BIM MEPF Coordination<br>GREY EDGE</div></div>
+      <div class="metric"><div class="mnum">CAD</div><div class="mlbl">Autodesk Inventor<br>Autodesk</div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section reveal footer">
+    <div class="box">
+      <div>
+        <h2 style="margin:0 0 8px">Let's build something scalable.</h2>
+        <div class="small">
+          Email: <a href="mailto:ahemad01@gmail.com">ahemad01@gmail.com</a> ·
+          Phone: <a href="tel:+917715910599">+91-771-591-0599</a> ·
+          LinkedIn: <a href="https://www.linkedin.com/in/fhdmohd" target="_blank" rel="noreferrer">linkedin.com/in/fhdmohd</a>
+        </div>
+      </div>
+      <a class="btn primary" href="mailto:ahemad01@gmail.com">Hire / Contact</a>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+
+const io = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); }), {threshold:.14});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+const countIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    document.querySelectorAll('.num[data-count]').forEach(el => {
+      const end = +el.dataset.count; let n = 0;
+      const t = setInterval(() => { n++; el.textContent = n; if(n >= end) clearInterval(t); }, Math.max(10, Math.floor(1200/end)));
+    });
+    countIO.disconnect();
+  });
+}, {threshold:.5});
+countIO.observe(document.querySelector('.hero-card'));
+
+const chips = document.querySelectorAll('.chip');
+const projects = document.querySelectorAll('.project');
+chips.forEach(chip => chip.addEventListener('click', () => {
+  chips.forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  const f = chip.dataset.filter;
+  projects.forEach(p => { p.style.display = (f==='all' || p.dataset.tags.split(' ').includes(f)) ? 'block' : 'none'; });
+}));
+
+const navLinks = document.querySelectorAll('.navlinks a');
+const navIO = new IntersectionObserver(entries => entries.forEach(e => {
+  if(!e.isIntersecting) return;
+  navLinks.forEach(a => a.classList.remove('active'));
+  const a = document.querySelector('.navlinks a[href="#'+e.target.id+'"]');
+  if(a) a.classList.add('active');
+}), {threshold:.4});
+['about','experience','stack','projects','contact'].forEach(id => { const s = document.getElementById(id); if(s) navIO.observe(s); });
+</script>
+</body>
+</html>
